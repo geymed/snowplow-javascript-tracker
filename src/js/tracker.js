@@ -501,7 +501,7 @@
 			lastVisitTs = id[5];
 
 			// New session
-			if (!ses) {
+			if (!ses || (parseInt(ses) < now.getTime())) {
 				// New session (aka new visit)
 				visitCount++;
 				// Update the last visit timestamp
@@ -545,7 +545,10 @@
 			// Update cookies
 			if (configWriteCookies) {
 				setDomainUserIdCookie(_domainUserId, createTs, visitCount, nowTs, lastVisitTs);
-				cookie.cookie(sesname, '*', configSessionCookieTimeout, configCookiePath, configCookieDomain);
+				// use another validation here to make sure cookie has expired
++				//cookie.setCookie(sesname, '*', configSessionCookieTimeout, configCookiePath, configCookieDomain);
++				cookie.cookie(sesname, now.getTime() + (configSessionCookieTimeout * 1000)  , configSessionCookieTimeout, configCookiePath, configCookieDomain);
+ 
 			}
 			return request;
 		}
