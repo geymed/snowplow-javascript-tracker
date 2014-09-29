@@ -546,8 +546,8 @@
 			if (configWriteCookies) {
 				setDomainUserIdCookie(_domainUserId, createTs, visitCount, nowTs, lastVisitTs);
 				// use another validation here to make sure cookie has expired
-+				//cookie.setCookie(sesname, '*', configSessionCookieTimeout, configCookiePath, configCookieDomain);
-+				cookie.cookie(sesname, now.getTime() + (configSessionCookieTimeout * 1000)  , configSessionCookieTimeout, configCookiePath, configCookieDomain);
+				//cookie.setCookie(sesname, '*', configSessionCookieTimeout, configCookiePath, configCookieDomain);
+				cookie.cookie(sesname, now.getTime() + (configSessionCookieTimeout * 1000)  , configSessionCookieTimeout, configCookiePath, configCookieDomain);
  
 			}
 			return request;
